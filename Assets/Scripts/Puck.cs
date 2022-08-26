@@ -26,12 +26,12 @@ public class Puck : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Revival();
-        camRay.hits = 0;
         if (!collision.gameObject.CompareTag("Gates"))
         {
+            Revival();
             health.TakeDamage();
         }
+        camRay.hits = 0;
     }
 
     private void HitPuck()
