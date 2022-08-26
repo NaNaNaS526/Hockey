@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class CameraRaycast : MonoBehaviour
@@ -13,7 +14,7 @@ public class CameraRaycast : MonoBehaviour
         _camera = gameObject.GetComponent<Camera>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if ((Input.GetMouseButtonUp(0) | Input.touchCount > 0) & hits == 0)
         {
@@ -28,15 +29,15 @@ public class CameraRaycast : MonoBehaviour
 
     private void CheckPlatform()
     {
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            _ray = _camera.ScreenPointToRay(Input.GetTouch(0).position);
+        }
+
         if (Application.platform == RuntimePlatform.WindowsPlayer |
             Application.platform == RuntimePlatform.WindowsEditor)
         {
             _ray = _camera.ScreenPointToRay(Input.mousePosition);
-        }
-
-        if (Application.platform == RuntimePlatform.Android)
-        {
-            _ray = _camera.ScreenPointToRay(Input.GetTouch(0).deltaPosition);
         }
     }
 }

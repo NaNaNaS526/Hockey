@@ -19,19 +19,15 @@ public class Puck : MonoBehaviour
 
     private void Update()
     {
+        CheckMaxPosition();
         MoveSlider();
         CheckDirection();
-        if (transform.position.magnitude > 10f)
-        {
-            health.TakeDamage();
-            Revival();
-        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        camRay.hits = 0;
         Revival();
+        camRay.hits = 0;
         if (!collision.gameObject.CompareTag("Gates"))
         {
             health.TakeDamage();
@@ -48,6 +44,7 @@ public class Puck : MonoBehaviour
             hitButton.interactable = false;
             camRay.targetPoint = new Vector3(0f, 0f, 0f);
             goalKeeper.moveSpeed += 0.5f;
+            camRay.hits = 0;
         }
     }
 
@@ -55,17 +52,17 @@ public class Puck : MonoBehaviour
     {
         if (_isPowerIncreasing)
         {
-            powerBar.fillAmount += 0.05f;
+            powerBar.fillAmount += 0.02f;
         }
         else
         {
-            powerBar.fillAmount -= 0.05f;
+            powerBar.fillAmount -= 0.02f;
         }
     }
 
     private void CheckDirection()
     {
-        if (powerBar.fillAmount <= 0f)
+        if (powerBar.fillAmount <= 0.2f)
         {
             _isPowerIncreasing = true;
         }
@@ -75,11 +72,20 @@ public class Puck : MonoBehaviour
         }
     }
 
-    private void Revival()
+    public void Revival()
     {
         var puckClone = Instantiate(gameObject, new Vector3(0f, 0.8f, -3.3f), Quaternion.identity);
         puckClone.gameObject.name = "Puck";
         Destroy(gameObject);
         hitButton.interactable = true;
+    }
+
+    private void CheckMaxPosition()
+    {
+        if (transform.position.magnitude > 10f)
+        {
+            health.TakeDamage();
+            Revival();
+        }
     }
 }

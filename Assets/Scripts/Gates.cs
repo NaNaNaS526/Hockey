@@ -9,6 +9,7 @@ public class Gates : MonoBehaviour
     {
         if (other.CompareTag("Puck"))
         {
+            GameObject.FindGameObjectWithTag("Puck").GetComponent<Puck>().Revival();
             _score += 50;
             scoreText.text = $"Score: {_score}";
             audioSource.Play();

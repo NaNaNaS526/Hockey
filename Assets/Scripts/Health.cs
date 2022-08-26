@@ -15,9 +15,10 @@ public class Health : MonoBehaviour
     public void TakeDamage()
     {
         CurrentHealth -= 1;
-        audioSource.Play();
+        audioSource.PlayOneShot(audioSource.clip);
         if (CurrentHealth <= 0)
         {
+            Time.timeScale = 0;
             defeatPanel.SetActive(true);
         }
     }

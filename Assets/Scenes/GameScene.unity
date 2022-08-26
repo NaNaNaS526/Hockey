@@ -727,8 +727,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.59808326, y: 0.13075507, z: 1.2392248}
-  m_Center: {x: -0.26564074, y: -1.8024659, z: 0.6313897}
+  m_Size: {x: 0.4357899, y: 0.13075495, z: 1.2392248}
+  m_Center: {x: -0.3467874, y: -1.8024659, z: 0.6313897}
 --- !u!65 &613242408
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -753,8 +753,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6101019, y: 0.13628423, z: 1.2822181}
-  m_Center: {x: -0.27165005, y: -0.025043607, z: 0.64110905}
+  m_Size: {x: 0.48353535, y: 0.13628423, z: 1.2822181}
+  m_Center: {x: -0.3349333, y: -0.025043607, z: 0.64110905}
 --- !u!54 &613242412
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -798,6 +798,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1569301747}
   audioSource: {fileID: 613242418}
+  puck: {fileID: 7375910773532770434}
 --- !u!82 &613242418
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2303,7 +2304,7 @@ MeshCollider:
   m_GameObject: {fileID: 1627320571}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -2846,7 +2847,7 @@ BoxCollider:
   m_GameObject: {fileID: 2100076553}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}

@@ -14,5 +14,6 @@ public class SceneReloader : MonoBehaviour
     private void StartNewGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1;
     }
 }
