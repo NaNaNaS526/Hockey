@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CameraRaycast : MonoBehaviour
 {
+    [SerializeField] private LayerMask layerMask;
     public int hits;
     public Vector3 targetPoint;
     private Camera _camera;
@@ -17,7 +18,7 @@ public class CameraRaycast : MonoBehaviour
         if ((Input.GetMouseButtonUp(0) | Input.touchCount > 0) & hits == 0)
         {
             CheckPlatform();
-            if (Physics.Raycast(_ray, out var hit, 100f))
+            if (Physics.Raycast(_ray, out var hit, 10f, layerMask))
             {
                 targetPoint = hit.point;
                 hits += 1;

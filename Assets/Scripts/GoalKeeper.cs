@@ -39,7 +39,7 @@ public class GoalKeeper : MonoBehaviour
             _isMovingRight = true;
         }
 
-        else if (_rigidBody.position.x >= 0.55 & _isMovingRight == true)
+        else if (_rigidBody.position.x >= 0.55 & _isMovingRight)
         {
             _isMovingRight = false;
         }

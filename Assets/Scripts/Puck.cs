@@ -1,12 +1,12 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Puck : MonoBehaviour
 {
+    [SerializeField] private Health health;
     [SerializeField] private Button hitButton;
     [SerializeField] private CameraRaycast camRay;
+    [SerializeField] private GoalKeeper goalKeeper;
     [SerializeField] private Image powerBar;
     private bool _isPowerIncreasing;
     private Rigidbody _rb;
@@ -21,19 +21,34 @@ public class Puck : MonoBehaviour
     {
         MoveSlider();
         CheckDirection();
+        if (transform.position.magnitude > 10f)
+        {
+            health.TakeDamage();
+            Revival();
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        gameObject.transform.position = new Vector3(0f, 0.8f, -3.3f);
+        camRay.hits = 0;
+        Revival();
+        if (!collision.gameObject.CompareTag("Gates"))
+        {
+            health.TakeDamage();
+        }
     }
 
     private void HitPuck()
     {
-        _rb.isKinematic = false;
-        var direction = camRay.targetPoint - _rb.position;
-        _rb.velocity = direction.normalized * powerBar.fillAmount * 10f;
-        camRay.hits = 0;
+        if (camRay.hits == 1)
+        {
+            _rb.isKinematic = false;
+            var direction = camRay.targetPoint - _rb.position;
+            _rb.velocity = direction.normalized * powerBar.fillAmount * 20f;
+            hitButton.interactable = false;
+            camRay.targetPoint = new Vector3(0f, 0f, 0f);
+            goalKeeper.moveSpeed += 0.5f;
+        }
     }
 
     private void MoveSlider()
@@ -58,5 +73,13 @@ public class Puck : MonoBehaviour
         {
             _isPowerIncreasing = false;
         }
+    }
+
+    private void Revival()
+    {
+        var puckClone = Instantiate(gameObject, new Vector3(0f, 0.8f, -3.3f), Quaternion.identity);
+        puckClone.gameObject.name = "Puck";
+        Destroy(gameObject);
+        hitButton.interactable = true;
     }
 }

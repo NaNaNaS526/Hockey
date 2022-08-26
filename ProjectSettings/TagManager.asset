@@ -5,11 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Puck
+  - Gates
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Gates
   - Water
   - UI
   - 
